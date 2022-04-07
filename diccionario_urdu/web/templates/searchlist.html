@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <title>{{t}}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='assets/style.css')}}">
+</head>
+
+<body>
+    <h1>{{h}}</h1>
+    <hr>
+    {% if words[0] %}
+    <h3>Resultado de la búsqueda</h3>
+    <table>
+        <tr id="row">
+            <td class="urdu_word">Palabra en urdu</td>
+            <td class="translit">Transliteración</td>
+            <td class="meaning">Significado</td>
+            <td class="gender">Género</td>
+            <td class="fav">Favorita</td>
+            <td class="func">Borrar</td>
+            <td class="func">Modificar</td>
+        </tr>
+        {% for word in words %}
+        <tr class="datas">
+            <td><a href="./fav?_id={{ word['_id'] }}"><input type="image" src="static/images/{{word['fav']}}.png"
+                        alt="Marcar como favorita"></a></td>
+            <td class="urdu_word">{{ word["urdu_word"] }}</td>
+            <td class="translit">{{ word["translit"] }}</td>
+            <td class="meaning">{{ word["meaning"] }}</td>
+            <td class="gender">{{ word["gender"] }}</td>
+            <td class="func1"><a href="./remove?_id={{ word['_id'] }}"><button type="submit">Borrar</button></a></td>
+            <td class="func1"><a href="./update?_id={{ word['_id'] }}"><button type="submit">Editar</button></a></td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <h4>No se encontraron resultados</h4>
+        {% endif %}
+    </table>
+    <a href="/">Volver a la lista</a>
+</body>
+
+</html>

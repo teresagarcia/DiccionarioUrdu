@@ -1,0 +1,88 @@
+<html>
+
+<head>
+    <title>{{t}}</title>
+    <!-- href="/static/assets/style.css"-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='assets/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='assets/emoji.css')}}">
+    <script src="{{ url_for('static',filename='assets/twemoji.min.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/emoji.js')}}"></script>
+</head>
+
+<body>
+    <h1>{{ h }}</h1>
+    <ul>
+        <li><a href="/list" class="{{ a1 }}">Todas las palabras</a></li>
+        <li><a href="/" class="{{ a2 }}">Recientes</a></li>
+        <li><a href="/favourites" class="{{ a3 }}">Favoritas</a></li>
+    </ul>
+    <hr>
+    {% if words[0] %}
+    <div span="right">
+        <form action="/search" method="GET">
+            <table class="none" id="close">
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td><big><b>Búsqueda:</b></big></td>
+                    <td><select name="refer" required>
+                            <option value="urdu_word">Urdu</option>
+                            <option value="translit">Transliteración</option>
+                            <option value="meaning">Significado</option>
+                            <option value="gender">Género</option>
+                        </select></td>
+                    <td><input type="text" name="key" placeholder="Buscar una palabra" size="15" /></td>
+                    <td><button type="submit">Buscar</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <b><big>Lista de palabras:</big></b>
+    <table>
+        <tr id="row">
+            <th class="urdu_word">Urdu</th>
+            <th class="translit">Transliteración</th>
+            <th class="meaning">Significado</th>
+            <th class="gender">Género</th>
+            <th class="fav">Favorito</th>
+            <th class="func1">Borrar</th>
+            <th class="func2">Modificar</th>
+        </tr>
+        {% for word in words %}
+        <tr class="datas">
+            <td class="urdu_word">{{ word["urdu_word"] }}</td>
+            <td class="translit">{{ word["translit"] }}</td>
+            <td class="meaning">{{ word["meaning"] }}</td>
+            <td class="gender">{{ word["gender"] }}</td>
+            <td><a href="./fav?_id={{ word['_id'] }}"><input type="image" src="static/images/{{word['fav']}}.png"
+                        alt="Favorito"></a></td>
+            <td class="func1"><a href="./remove?_id={{ word['_id'] }}"><button type="submit">Borrar</button></a></td>
+            <td class="func1"><a href="./update?_id={{ word['_id'] }}"><button type="submit">Editar</button></a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <h4>¡¡No hay palabras!!</h4>
+    {% endif %}
+    <hr />
+    <form action="/action" method="POST">
+        <table class="none">
+            <tr>
+                <td><b><big><label>Añadir una palabra : </label></big></b></td>
+            </tr>
+            <tr>
+                <td><input type="text" name="urdu_word" placeholder="Palabra en urdu"></td>
+                <td><input type="text" name="translit" placeholder="Transliteración" /></td>
+                <td><textarea name="meaning" rows="1" cols="30" placeholder="Introduce el significado..."
+                        required></textarea></td>
+                <td><input type="text" name="gender" placeholder="Género (si corresponde)" /></td>
+                <td><button type="submit"> Crear </button></td>
+            </tr>
+    </form>
+    </table>
+    <script>
+
+    </script>
+</body>
+
+</html>

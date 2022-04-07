@@ -26,18 +26,18 @@ def lists ():
     return render_template('index.html',a1=a1,words=words_l,t=title,h=heading)    
   
 @app.route("/")    
-@app.route("/favourites")    
+@app.route("/recent")    
 def words ():    
-    #Display the Uncompleted words    
-    words_l = words.find({"fav":"yes"})    
+    #Display the Recent words    
+    words_l = words.find().sort({_id:1}).limit(10)   
     a2 = "active"    
     return render_template('index.html',a2=a2,words=words_l,t=title,h=heading)    
   
   
-@app.route("/recent")    
-def completed ():    
-    #Display the Completed words    
-    words_l = words.find().sort({_id:1}).limit(10)   
+@app.route("/favourites")    
+def favourites ():    
+    #Display the recent words    
+    words_l = words.find({"fav":"yes"})   
     a3 = "active"    
     return render_template('index.html',a3=a3,words=words_l,t=title,h=heading)    
   

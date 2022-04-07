@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <title>{{t}}</title>
+</head>
+<style>
+    h1 {
+        font-family: "Arial Black", Gadget, sans-serif;
+    }
+
+    body {
+        background-color: white;
+    }
+</style>
+
+<body>
+    <h1>{{h}}</h1>
+    <hr>
+    <h3>Editar palabras</h3>
+    <form action="/action3" method="POST">
+        {% for word in tasks %}
+        Unique Object ID : {{ word['_id'] }}<br />
+        <input type="text" urdu_word="_id" value="{{ word['_id'] }}" hidden>
+
+        <table>
+            <tr>
+                <td>Palabra en urdu</td>
+                <td> : </td>
+                <td><input type="text" urdu_word="urdu_word" value="{{ word['urdu_word'] }}"
+                        placeholder="{{ word['urdu_word'] }}"></td>
+            </tr>
+            <tr>
+                <td>Transliteración</td>
+                <td> : </td>
+                <td><input type="text" urdu_word="translit" value="{{ word['translit'] }}"
+                        placeholder="{{ word['translit'] }}"></td>
+            </tr>
+            <tr>
+                <td>Significado</td>
+                <td> : </td>
+                <td><textarea type="text" urdu_word="meaning" rows=3 cols=30
+                        placeholder="{{ word['meaning'] }}"> {{ word['meaning'] }} </textarea></td>
+            </tr>
+            <tr>
+                <td>Género</td>
+                <td> : </td>
+                <td><input type="text" urdu_word="gender" value="{{ word['gender'] }}"
+                        placeholder="{{ word['gender'] }}"></td>
+            </tr>
+        </table>
+        {% endfor %}
+        <button type="submit"> Actualizar palabra </button>
+        <br />
+    </form>
+    <a href="/">Volver a la lista</a>
+</body>
+
+</html>
