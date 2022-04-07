@@ -6,8 +6,8 @@ h1 {
 body {
     color: black;
     background-color: white;
-    left-margin: 10px;
-    right-margin: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 table {
