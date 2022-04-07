@@ -14,9 +14,7 @@ db = client.urdudic #Select the database
 words = db.words #Select the collection name 
 
 def redirect_url():    
-    return request.args.get('next') or \    
-           request.referrer or \    
-           url_for('index')    
+    return request.args.get('next') or request.referrer or url_for('index')    
   
 @app.route("/list")    
 def lists ():    

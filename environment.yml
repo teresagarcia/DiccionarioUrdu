@@ -6,4 +6,3 @@ dependencies:
    - pytest 
    - Flask
    - pymongo
-   - bson
