@@ -59,14 +59,14 @@ def action ():
     translit=request.values.get("translit")    
     meaning=request.values.get("meaning")    
     gender=request.values.get("gender")    
-    words.insert({ "urdu_word":urdu_word, "translit":translit, "meaning":meaning, "gender":gender, "date": datetime.datetime.now(), "fav":"no"})    
+    words.insert_one({ "urdu_word":urdu_word, "translit":translit, "meaning":meaning, "gender":gender, "date": datetime.now(), "fav":"no"})    
     return redirect("/list")    
   
 @app.route("/remove")    
 def remove ():    
     #Deleting a word with various references    
     key=request.values.get("_id")    
-    words.remove({"_id":ObjectId(key)})    
+    words.delete_one({"_id":ObjectId(key)})    
     return redirect("/")    
   
 @app.route("/update")    
@@ -83,7 +83,7 @@ def action3 ():
     meaning=request.values.get("meaning")    
     gender=request.values.get("gender")    
     id=request.values.get("_id")    
-    words.update({"_id":ObjectId(id)}, {'$set':{ "urdu_word":urdu_word, "translit":translit, "meaning":meaning, "gender":gender }})    
+    words.update_one({"_id":ObjectId(id)}, {'$set':{ "urdu_word":urdu_word, "translit":translit, "meaning":meaning, "gender":gender }})    
     return redirect("/")    
   
 @app.route("/search", methods=['GET'])    
