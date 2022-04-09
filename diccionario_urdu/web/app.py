@@ -25,9 +25,9 @@ def lists ():
   
 @app.route("/")    
 @app.route("/recent")    
-def words ():    
+def recent_words ():    
     #Display the Recent words    
-    words_l = words.find().sort({_id:1}).limit(10)   
+    words_l = words.find().sort('$natural', 1).limit(10)   
     a2 = "active"    
     return render_template('index.html',a2=a2,words=words_l,t=title,h=heading)    
   

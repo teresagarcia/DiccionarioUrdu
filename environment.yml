@@ -2,7 +2,8 @@ name: diccionario-env
 
 dependencies:
  - python=3.8
+ - pip
  - pip:
    - pytest 
    - Flask
-   - pymongo
+   - pymongo == 4.1
