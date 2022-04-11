@@ -1,6 +1,5 @@
 h1 {
-    /*  font-family:"Arial Black", Gadget, sans-serif;*/
-    font-family: "Times New Romans", Gadget, sans-serif;
+    font-family: Verdana, sans-serif;
 }
 
 body {
@@ -8,6 +7,7 @@ body {
     background-color: white;
     margin-left: 10px;
     margin-right: 10px;
+    font-family: Verdana, sans-serif;
 }
 
 table {
