@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap');
+
 h1 {
     font-family: Verdana, sans-serif;
 }
@@ -104,4 +106,9 @@ a.active {
 /* Change the link color to #111 (black) on hover */
 li a:hover {
     background-color: #111;
+}
+
+.nastaliq{
+    font-family: 'Noto Nastaliq Urdu', serif;
+    font-size: 24px;
 }
