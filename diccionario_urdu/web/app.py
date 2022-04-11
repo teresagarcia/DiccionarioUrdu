@@ -45,9 +45,9 @@ def fav ():
     id=request.values.get("_id")    
     word=words.find({"_id":ObjectId(id)})    
     if(word[0]["fav"]=="yes"):    
-        words.update({"_id":ObjectId(id)}, {"$set": {"fav":"no"}})    
+        words.update_one({"_id":ObjectId(id)}, {"$set": {"fav":"no"}})    
     else:    
-        words.update({"_id":ObjectId(id)}, {"$set": {"fav":"yes"}})    
+        words.update_one({"_id":ObjectId(id)}, {"$set": {"fav":"yes"}})    
     redir=redirect_url()        
     
     return redirect(redir)    
@@ -62,7 +62,7 @@ def action ():
     words.insert_one({ "urdu_word":urdu_word, "translit":translit, "meaning":meaning, "gender":gender, "date": datetime.now(), "fav":"no"})    
     return redirect("/list")    
   
-@app.route("/remove")    
+@app.route("/delete")    
 def remove ():    
     #Deleting a word with various references    
     key=request.values.get("_id")    
